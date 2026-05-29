@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ACT HIGH-RISK — onezero.legal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg: #F5F0E8;
+    --bg-alt: #EDE8DF;
+    --ink: #1A1A1A;
+    --ink-light: #4A4A4A;
+    --ink-muted: #8A8A7A;
+    --green: #00E676;
+    --green-dark: #00C853;
+    --pink: #FF4081;
+    --mint-hl: #B8F0D0;
+    --pink-hl: #FF80AB;
+    --blue-hl: #BFD9F5;
+    --border-w: 2.5px;
+    --skill-color: #C4DCC0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────── */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: var(--border-w) solid var(--ink);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.nav-section-icon {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.6rem;
+    background: var(--pink);
+    color: white;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-brand {
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.nav-brand a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-brand a:hover { color: var(--pink); }
+
+.nav-divider {
+    color: var(--ink-muted);
+    font-size: 0.85rem;
+}
+
+.nav-skill {
+    font-size: 0.75rem;
+    background: var(--skill-color);
+    border: 1.5px solid var(--ink);
+    padding: 0.2rem 0.6rem;
+    letter-spacing: 0.04em;
+}
+
+.nav-version {
+    font-size: 0.72rem;
+    border: 1.5px solid var(--ink);
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.04em;
+}
+
+.nav-spacer { flex: 1; }
+
+.nav-back {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 0.4rem 0.8rem;
+    border: 1.5px solid var(--ink);
+}
+
+.nav-back:hover { background: var(--ink); color: var(--bg); }
+
+/* ── HERO ────────────────────────────── */
+.hero {
+    padding: 3.5rem 1.5rem 3rem;
+    max-width: 1000px;
+}
+
+.badges {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.45rem 0.9rem;
+    width: fit-content;
+    border: 1.5px solid var(--ink);
+}
+
+.badge--live { background: var(--pink); color: white; border-color: var(--pink); }
+.badge--live::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 6px var(--green);
+}
+
+.badge--color { background: var(--skill-color); }
+
+.hero h1 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 9vw, 5.2rem);
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+}
+
+.hero h1 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    text-transform: lowercase;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.hero h1 .hl-accent {
+    background: var(--skill-color);
+    padding: 0 0.15em;
+}
+
+.hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 640px;
+}
+
+.hero-sub .hl {
+    background: var(--blue-hl);
+    padding: 0.05em 0.25em;
+}
+
+/* ── MARQUEE ─────────────────────────── */
+.marquee-wrap {
+    background: var(--ink);
+    overflow: hidden;
+    padding: 0.9rem 0;
+    border-top: var(--border-w) solid var(--ink);
+    border-bottom: var(--border-w) solid var(--ink);
+}
+
+.marquee-track {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee-scroll 50s linear infinite;
+}
+
+.marquee-text {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.2rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+    padding-right: 2rem;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ── SECTION ─────────────────────────── */
+.section {
+    padding: 4rem 1.5rem 1rem;
+    max-width: 1000px;
+}
+
+.section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section-label .section-icon {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1rem;
+    color: var(--ink);
+}
+
+.section h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: clamp(1.8rem, 6vw, 3.2rem);
+    line-height: 1.02;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+}
+
+.section h2 em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    text-transform: lowercase;
+    font-weight: 400;
+}
+
+.section-intro {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    max-width: 620px;
+    color: var(--ink-light);
+    margin-bottom: 3rem;
+}
+
+/* ── FEATURE CARDS ───────────────────── */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.feature-card {
+    border: var(--border-w) solid var(--ink);
+    padding: 1.5rem;
+    transition: transform 0.15s ease;
+}
+
+.feature-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.feature-number {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.feature-name {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.8rem;
+}
+
+.feature-desc {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+/* ── WORKFLOW ────────────────────────── */
+.workflow-list {
+    padding: 0 1.5rem 4rem;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.workflow-step {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1rem 1.4rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.4rem;
+    align-items: start;
+    transition: background 0.15s;
+}
+
+.workflow-step:hover { background: var(--skill-color); }
+
+.workflow-step-num {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.4rem;
+    line-height: 1;
+    width: 2.2rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--skill-color);
+    border: 2px solid var(--ink);
+    flex-shrink: 0;
+}
+
+.workflow-step-body { padding-top: 0.15rem; }
+
+.workflow-step-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.3rem;
+}
+
+.workflow-step-desc {
+    font-size: 0.78rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+.workflow-step-desc .hl {
+    background: var(--blue-hl);
+    padding: 0.05em 0.25em;
+}
+
+/* ── MODES ───────────────────────────── */
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.mode-card {
+    border: var(--border-w) solid var(--ink);
+    padding: 1.5rem;
+}
+
+.mode-name {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+}
+
+.mode-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+/* ── FOLDER TREE ─────────────────────── */
+.tree-wrap {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.tree-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--ink);
+    color: #E0E0E0;
+    padding: 1.8rem 2rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    overflow-x: auto;
+}
+
+.tree-card pre {
+    font-family: 'JetBrains Mono', monospace;
+    color: #E0E0E0;
+    white-space: pre;
+}
+
+.tree-card .comment { color: #00E676; }
+
+/* ── DEPLOYMENT ──────────────────────── */
+.deployment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.deploy-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1.8rem;
+}
+
+.deploy-card h3 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.deploy-card ol {
+    padding-left: 1.2rem;
+    font-size: 0.82rem;
+    line-height: 1.8;
+    color: var(--ink-light);
+}
+
+.deploy-card code {
+    background: var(--ink);
+    color: var(--green);
+    padding: 0.05em 0.4em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+}
+
+.deploy-card pre {
+    background: var(--ink);
+    color: var(--green);
+    padding: 0.8rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    margin-top: 0.8rem;
+    overflow-x: auto;
+}
+
+/* ── OUTPUTS LIST ────────────────────── */
+.outputs-list {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.output-row {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1.2rem 1.6rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.4rem;
+    align-items: center;
+}
+
+.output-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.output-desc {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--ink-light);
+}
+
+/* ── EVALS ───────────────────────────── */
+.evals-section {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.evals-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--skill-color);
+    padding: 1.4rem 1.5rem;
+}
+
+.stat-value {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 2.8rem;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-light);
+}
+
+.eval-topics {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+}
+
+.eval-row {
+    padding: 1rem 1.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.2rem;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.eval-row:last-child { border-bottom: none; }
+
+.eval-id {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 0.95rem;
+    width: 2.5rem;
+}
+
+.eval-asserts {
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.06em;
+}
+
+/* ── REGULATORY TABLE ────────────────── */
+.reg-table {
+    padding: 0 1.5rem 4rem;
+    max-width: 1000px;
+}
+
+.reg-grid {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+}
+
+.reg-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1.5px solid var(--ink);
+    font-size: 0.85rem;
+}
+
+.reg-row:last-child { border-bottom: none; }
+
+.reg-doc { font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; }
+.reg-ref { color: var(--ink-light); }
+
+/* ── TRUST SECTION ───────────────────── */
+.trust-section {
+    padding: 4rem 1.5rem;
+    max-width: 1000px;
+}
+
+.trust-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.trust-card {
+    border: var(--border-w) solid var(--ink);
+    background: var(--bg);
+    padding: 1.4rem 1.6rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.2rem;
+    align-items: start;
+}
+
+.trust-icon {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.8rem;
+    line-height: 1;
+    margin-top: 0.1rem;
+}
+
+.trust-title { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
+.trust-desc { font-size: 0.78rem; line-height: 1.6; color: var(--ink-light); }
+
+.trust-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 0.25rem 0.55rem;
+    align-self: end;
+    white-space: nowrap;
+}
+
+/* ── README BLOCK ────────────────────── */
+.readme-section {
+    background: var(--bg-alt);
+    border-top: var(--border-w) solid var(--ink);
+    padding: 4rem 1.5rem;
+}
+
+.readme-inner {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.readme-content {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--ink);
+}
+
+.readme-content h1 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+    line-height: 1.05;
+}
+
+.readme-content h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin: 2.5rem 0 1rem;
+    line-height: 1.1;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 0.3rem;
+}
+
+.readme-content h3 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    margin: 1.8rem 0 0.8rem;
+}
+
+.readme-content p { margin-bottom: 1rem; }
+
+.readme-content ul, .readme-content ol {
+    margin: 1rem 0 1rem 1.5rem;
+}
+
+.readme-content li { margin-bottom: 0.4rem; }
+
+.readme-content strong { font-weight: 700; }
+
+.readme-content code {
+    background: var(--ink);
+    color: var(--green);
+    padding: 0.08em 0.4em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+}
+
+.readme-content pre {
+    background: var(--ink);
+    color: #E0E0E0;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+}
+
+.readme-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+.readme-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.82rem;
+    border: 2px solid var(--ink);
+}
+
+.readme-content thead {
+    background: var(--ink);
+    color: var(--bg);
+}
+
+.readme-content th, .readme-content td {
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    border: 1px solid var(--ink);
+}
+
+.readme-content th {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+}
+
+.readme-content a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+}
+
+.readme-content blockquote {
+    border-left: 4px solid var(--ink);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--ink-light);
+    font-style: italic;
+}
+
+.readme-content hr {
+    border: none;
+    border-top: 2px solid var(--ink);
+    margin: 2rem 0;
+}
+
+/* ── FOOTER ──────────────────────────── */
+.page-footer {
+    border-top: var(--border-w) solid var(--ink);
+    padding: 2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-text {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+}
+
+.footer-links { display: flex; gap: 1.5rem; }
+
+.footer-links a {
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.footer-links a:hover { color: var(--ink); }
+
+/* ── RESPONSIVE ──────────────────────── */
+@media (max-width: 720px) {
+    .features-grid, .modes-grid { grid-template-columns: 1fr; }
+    .deployment-grid { grid-template-columns: 1fr; }
+    .output-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    .reg-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .trust-card { grid-template-columns: 1fr; gap: 0.6rem; }
+    .trust-badge { width: fit-content; }
+    .nav { padding: 0.7rem 1rem; flex-wrap: wrap; }
+    .nav-skill { display: none; }
+    .nav-back { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
+    .hero, .section, .trust-section { padding-left: 1rem; padding-right: 1rem; }
+    .features-grid, .workflow-list, .modes-grid, .tree-wrap, .deployment-grid, .outputs-list, .evals-section, .reg-table {
+        padding-left: 1rem; padding-right: 1rem;
+    }
+}
+</style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-section-icon">§</div>
+        <span class="nav-brand"><a href="index.html">onezero.legal</a></span>
+        <span class="nav-divider">/</span>
+        <span class="nav-skill">/SKILLS/AIACT.HIGHRISK</span>
+        <div class="nav-spacer"></div>
+        <a href="index.html" class="nav-back">← PORTFOLIO</a>
+    </nav>
+
+    <section class="hero">
+        <div class="badges">
+            <div class="badge badge--live">LIVE · v1.0 STABLE</div>
+            <div class="badge">BUILD 2026.05.27</div>
+            <div class="badge badge--color">ART. 6</div>
+            <div class="badge">AGPL-3.0 · 10 EVAL CASES · 0 ASSERTIONS</div>
+        </div>
+
+        <h1>IS YOUR<br>SYSTEM<br><em>high-</em><span class="hl-accent">RISK</span><br>UNDER ART. 6.</h1>
+
+        <p class="hero-sub">Depth classification of an AI system against Art. 6 of the EU AI Act, grounded in the Commission’s draft Art. 6(5) guidelines. <span class="hl">Annex I safety-component analysis</span>, <span class="hl">Annex III use-case mapping</span>, <span class="hl">Art. 6(3) exception filter</span>, <span class="hl">profiling re-exception</span>, <span class="hl">Art. 25 substantial-modification trap</span>, and an <span class="hl">AI-Omnibus-corrected effective-date verdict</span> — in one decision tree.</p>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span class="marquee-text">AI ACT ART. 6 &nbsp; · &nbsp; ART. 6(1) &nbsp; · &nbsp; ART. 6(2) &nbsp; · &nbsp; ART. 6(3) &nbsp; · &nbsp; ART. 6(4) &nbsp; · &nbsp; ANNEX I &nbsp; · &nbsp; ANNEX III &nbsp; · &nbsp; ART. 25 &nbsp; · &nbsp; ART. 3(14) &nbsp; · &nbsp; REG. 2024/1689 &nbsp; · &nbsp; DECISION 768/2008/EC &nbsp; · &nbsp; AI OMNIBUS 2026 &nbsp; · &nbsp; AI ACT ART. 6 &nbsp; · &nbsp; ART. 6(1) &nbsp; · &nbsp; ART. 6(2) &nbsp; · &nbsp; ART. 6(3) &nbsp; · &nbsp; ART. 6(4) &nbsp; · &nbsp; ANNEX I &nbsp; · &nbsp; ANNEX III &nbsp; · &nbsp; ART. 25 &nbsp; · &nbsp; ART. 3(14) &nbsp; · &nbsp; REG. 2024/1689 &nbsp; · &nbsp; DECISION 768/2008/EC &nbsp; · &nbsp; AI OMNIBUS 2026</span>
+        </div>
+    </div>
+
+    <section class="section" id="features">
+        <div class="section-label"><span class="section-icon">§</span> 01 · CAPABILITIES</div>
+        <h2>SIX PRIMITIVES.<br><em>One</em> SKILL.</h2>
+        <p class="section-intro">
+            Each capability is documented separately, tested separately, and called by
+            the workflow at the right moment. Compose them or invoke individually.
+        </p>
+    </section>
+
+    <div class="features-grid">
+        <div class="feature-card" style="background-color: #C8F0DC;">
+            <div class="feature-number">01</div>
+            <div class="feature-name">ANNEX I SAFETY COMPONENT</div>
+            <div class="feature-desc">Art. 3(14) two-prong test: safety function (intent, ¶¶37) OR failure/malfunction (consequences, ¶¶38–43). Screens against Union harmonisation legislation — machinery, lifts, MDR, IVDR, automotive.</div>
+        </div>
+        <div class="feature-card" style="background-color: #FFE0A0;">
+            <div class="feature-number">02</div>
+            <div class="feature-name">ANNEX III USE-CASE MAP</div>
+            <div class="feature-desc">Cross-checks the intended purpose against all eight Annex III areas: biometrics, critical infrastructure, education, employment, essential services, law enforcement, migration, justice/democracy. Captures the specific sub-point (e.g. Nr. 4(a)).</div>
+        </div>
+        <div class="feature-card" style="background-color: #D8C8F0;">
+            <div class="feature-number">03</div>
+            <div class="feature-name">ART. 6(3) EXCEPTION FILTER</div>
+            <div class="feature-desc">Tests the four narrow limbs (a) procedural / (b) improvement / (c) deviation detection / (d) preparatory. Profiling under Art. 4(4) GDPR excludes the exception and re-confirms high-risk.</div>
+        </div>
+        <div class="feature-card" style="background-color: #C0DCF4;">
+            <div class="feature-number">04</div>
+            <div class="feature-name">CONFORMITY-ASSESSMENT TRIGGER</div>
+            <div class="feature-desc">Maps the Annex I legal act to its Decision 768/2008/EC module. Modules B–H1 invoke a notified body; Module A conditioned on harmonised standards stays high-risk (¶57).</div>
+        </div>
+        <div class="feature-card" style="background-color: #FFD0B8;">
+            <div class="feature-number">05</div>
+            <div class="feature-name">ART. 25 MODIFICATION TRAP</div>
+            <div class="feature-desc">Flags the quasi-provider trap: rebranding, substantial modification, or repurposing a non-high-risk system (incl. GPAI) into a high-risk one under Art. 25(1)(a–c).</div>
+        </div>
+        <div class="feature-card" style="background-color: #B0E0D4;">
+            <div class="feature-number">06</div>
+            <div class="feature-name">AI-OMNIBUS DATE CORRECTION</div>
+            <div class="feature-desc">Applies the postponed effective dates: Annex III to 2 Dec 2027, Annex I to 2 Aug 2028, Art. 111(2) legacy cut-off to 2 Dec 2027.</div>
+        </div>
+    </div>
+
+    <section class="section" id="workflow">
+        <div class="section-label"><span class="section-icon">§</span> 02 · WORKFLOW</div>
+        <h2>FROM INPUT<br><em>to</em> ARTEFACT.</h2>
+        <p class="section-intro">
+            Twelve structured steps. The human stays accountable; the skill carries the
+            structure, the citations, and the document trail.
+        </p>
+    </section>
+
+    <div class="workflow-list">
+        <div class="workflow-step">
+            <div class="workflow-step-num">01</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Disclaimer &amp; inputs</div>
+                <div class="workflow-step-desc">Non-blocking disclaimer. Gather system description, intended-purpose evidence, deployment context, and modification status before proceeding.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">02</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 1 — AI system gating</div>
+                <div class="workflow-step-desc">Confirm the Art. 3(1) AI system definition. Pure rule-based software with no inference → not in AI Act scope, terminate.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">03</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 2 — Intended-purpose framing</div>
+                <div class="workflow-step-desc">Document the provider's stated purpose (Art. 3(12); ¶¶10–13). Apply the GPAI / multi-purpose trap: broad positioning deems high-risk uses included.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">04</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 3 — Art. 6(1) / Annex I branch</div>
+                <div class="workflow-step-desc">Is the system a regulated product (¶30) or a safety component (¶31)? Run the Art. 3(14) two-prong test — safety function OR failure-based.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">05</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 3c — Conformity assessment</div>
+                <div class="workflow-step-desc">Look up the required module. Notified-body modules (B–H1) or harmonised-standards-conditioned Module A → high-risk under Art. 6(1).</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">06</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 3d — Section A vs B</div>
+                <div class="workflow-step-desc">Record the Annex I citation and whether the legal act is Section A (full Chapter III) or Section B (Art. 6(1), 102–109, 112 only, per Art. 2(2)).</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">07</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 4 — Art. 6(2) / Annex III branch</div>
+                <div class="workflow-step-desc">Map the intended purpose to the eight Annex III areas. Capture the matching sub-point for each hit.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">08</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 4b — Art. 6(3) exception</div>
+                <div class="workflow-step-desc">If a use case matches, test the four narrow limbs. An exception means not high-risk — subject to the profiling check.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">09</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 4c — Profiling re-exception</div>
+                <div class="workflow-step-desc">If the system profiles natural persons (Art. 4(4) GDPR), the Art. 6(3) exception is excluded and the system IS high-risk.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">10</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 4d — Exception documentation duty</div>
+                <div class="workflow-step-desc">If the exception holds: not high-risk, but document the reasoning (Art. 6(4)) and register in the EU database (Art. 49(2)).</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">11</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Step 5 — Art. 25 trap</div>
+                <div class="workflow-step-desc">If the user modifies, fine-tunes, or rebrands a third-party system, flag Art. 25(1) quasi-provider status.</div>
+            </div>
+        </div>
+        <div class="workflow-step">
+            <div class="workflow-step-num">12</div>
+            <div class="workflow-step-body">
+                <div class="workflow-step-title">Verdict &amp; artefacts</div>
+                <div class="workflow-step-desc">Emit the structured decision block, the practitioner memo, and the JSON interchange artefact with citations and effective date.</div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="section" id="modes">
+        <div class="section-label"><span class="section-icon">§</span> 03 · MODES</div>
+        <h2>TWO PATHS.<br><em>One</em> OUTCOME.</h2>
+        <p class="section-intro">
+            Match the workflow to the situation. The skill router picks automatically;
+            you can override.
+        </p>
+    </section>
+
+    <div class="modes-grid">
+        <div class="mode-card" style="background-color: #C8F0DC;">
+            <div class="mode-name">ANNEX I</div>
+            <div class="mode-desc">Product / safety-component track. Art. 6(1) via Union harmonisation legislation and third-party conformity assessment. Effective 2 Aug 2028.</div>
+        </div>
+        <div class="mode-card" style="background-color: #FFE0A0;">
+            <div class="mode-name">ANNEX III</div>
+            <div class="mode-desc">Use-case track. Art. 6(2) across the eight high-risk areas, filtered by the Art. 6(3) exception and profiling re-exception. Effective 2 Dec 2027.</div>
+        </div>
+    </div>
+
+    <section class="section" id="tree">
+        <div class="section-label"><span class="section-icon">§</span> 04 · ANATOMY</div>
+        <h2>WHAT'S<br>IN <em>the</em> SKILL.</h2>
+        <p class="section-intro">
+            Single-folder skill. SKILL.md is the runtime spec; references hold the
+            knowledge corpus; evals hold the proof.
+        </p>
+    </section>
+
+    <div class="tree-wrap">
+        <div class="tree-card">
+            <pre>ai-act-high-risk/
+├── evals  <span class="comment"># Test cases + assertions</span>
+│   └── evals.json  <span class="comment"># 10 cases, 0 assertions</span>
+├── references  <span class="comment"># Reference corpus</span>
+│   ├── ai-omnibus-timeline-postponements.md
+│   ├── annex-i-section-a-vs-b.md
+│   ├── annex-iii-area-1-biometrics.md
+│   ├── annex-iii-area-2-critical-infrastructure.md
+│   ├── annex-iii-area-3-education.md
+│   ├── annex-iii-area-4-employment.md
+│   ├── annex-iii-area-5-essential-services.md
+│   ├── annex-iii-area-6-law-enforcement.md
+│   ├── annex-iii-area-7-migration.md
+│   ├── annex-iii-area-8-justice-democracy.md
+│   ├── art-25-substantial-modification-flag.md
+│   ├── art-6-1-annex-i-guidelines.md
+│   ├── art-6-2-annex-iii-guidelines.md
+│   ├── art-6-3-exception-decision-tree.md
+│   ├── art-6-general-principles.md
+│   └── safety-function-checklist.md
+├── CHANGELOG.md  <span class="comment"># Version history</span>
+├── README.md  <span class="comment"># Deployment guide</span>
+└── SKILL.md  <span class="comment"># Main skill instructions</span></pre>
+        </div>
+    </div>
+
+    <section class="section" id="deploy">
+        <div class="section-label"><span class="section-icon">§</span> 05 · DEPLOYMENT</div>
+        <h2>INSTALL<br><em>and</em> INVOKE.</h2>
+        <p class="section-intro">
+            Two deployment surfaces. The skill auto-triggers on relevant keywords once
+            installed.
+        </p>
+    </section>
+
+    <div class="deployment-grid">
+        <div class="deploy-card" style="background-color: #C4DCC0;">
+            <h3>CLAUDE.AI USER SKILLS</h3>
+            <ol>
+                <li>Settings → Profile → Custom Skills</li>
+                <li>Upload the entire <code>ai-act-high-risk/</code> folder</li>
+                <li>Skill auto-triggers on relevant keywords</li>
+            </ol>
+        </div>
+        <div class="deploy-card">
+            <h3>CLAUDE CODE / MCP</h3>
+            <ol>
+                <li>Copy folder to your skills directory:</li>
+            </ol>
+            <pre>cp -r ai-act-high-risk/ \
+   ~/.claude/skills/user/</pre>
+        </div>
+    </div>
+
+    <section class="section" id="outputs">
+        <div class="section-label"><span class="section-icon">§</span> 06 · OUTPUTS</div>
+        <h2>WHAT YOU<br><em>get</em> BACK.</h2>
+        <p class="section-intro">
+            Every output is documented, version-pinned, and traceable to its source citation.
+        </p>
+    </section>
+
+    <div class="outputs-list">
+        <div class="output-row">
+            <div class="output-name">Structured decision block</div>
+            <div class="output-desc">Terminal verdict: high-risk YES/NO, branch (6(1) Annex I / 6(2) Annex III Nr. X), basis, Art. 6(3) status, Art. 25 flag, effective date, documentation duty.</div>
+        </div>
+        <div class="output-row">
+            <div class="output-name">Practitioner memo</div>
+            <div class="output-desc">1–2 page Markdown narrative for a DPO / AI compliance officer: system under assessment, verdict and reasoning, Commission-guideline paragraph anchors, routing, open questions.</div>
+        </div>
+        <div class="output-row">
+            <div class="output-name">JSON interchange artefact</div>
+            <div class="output-desc">Cross-skill interchange JSON: verdict, basis (article/annex/item/section), Art. 6(3) limb, profiling flag, Art. 25 flag, effective date, citations, downstream routing.</div>
+        </div>
+    </div>
+
+    <section class="section" id="evals">
+        <div class="section-label"><span class="section-icon">§</span> 07 · EVALS</div>
+        <h2>TESTED<br><em>before</em> SHIPPED.</h2>
+        <p class="section-intro">
+            Every release runs against a fixed test suite. Assertions check numeric
+            consistency, citation accuracy, and decision-tree branches.
+        </p>
+    </section>
+
+    <div class="evals-section">
+        <div class="evals-stats">
+            <div class="stat-card">
+                <div class="stat-value">10</div>
+                <div class="stat-label">Test Cases</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Assertions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Coverage Required</div>
+            </div>
+        </div>
+        <div class="eval-topics">
+            <div class="eval-row">
+                <div class="eval-id">00</div>
+                <div>Hi, we are a German GmbH building an AI-based computer-vision system that detect...</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">01</div>
+                <div>We are a lift manufacturer</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">02</div>
+                <div>We sell a connected smart thermostat in the EU</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">03</div>
+                <div>Our HR-tech startup sells a CV-screening tool to EU enterprises</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">04</div>
+                <div>We deploy a small AI tool that takes recruiter-written feedback notes about cand...</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">05</div>
+                <div>We have an email spam filter that uses ML to classify incoming emails as spam or...</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">06</div>
+                <div>We are an enterprise customer</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+            <div class="eval-row">
+                <div class="eval-id">07</div>
+                <div>Our retail analytics company offers an AI camera system installed at store entra...</div>
+                <div class="eval-asserts">0 ASSERTS</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section" id="regulatory">
+        <div class="section-label"><span class="section-icon">§</span> 08 · REGULATORY BASIS</div>
+        <h2>WHAT IT<br><em>cites.</em></h2>
+        <p class="section-intro">
+            Every legal verdict resolves to one of these instruments. No invented
+            articles, no synthetic recitals.
+        </p>
+    </section>
+
+    <div class="reg-table">
+        <div class="reg-grid">
+            <div class="reg-row">
+                <div class="reg-doc">EU AI Act (Reg. 2024/1689) Art. 6</div>
+                <div class="reg-ref">High-risk classification rules — Art. 6(1) Annex I, Art. 6(2) Annex III, Art. 6(3) exception, Art. 6(4) documentation duty.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">Commission draft Art. 6(5) guidelines</div>
+                <div class="reg-ref">General principles, Annex I, and Annex III classification guidelines issued for stakeholder consultation in 2026 (non-binding).</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">AI Act Annex I &amp; Annex III</div>
+                <div class="reg-ref">Union harmonisation legislation list (Section A/B) and the eight high-risk use-case areas.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">Decision 768/2008/EC</div>
+                <div class="reg-ref">Conformity-assessment module reference (Modules A–H1) determining the third-party / notified-body trigger.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">AI Act Art. 25</div>
+                <div class="reg-ref">Substantial-modification / quasi-provider trap for parties altering an existing AI system.</div>
+            </div>
+            <div class="reg-row">
+                <div class="reg-doc">AI Omnibus 2026</div>
+                <div class="reg-ref">Effective-date postponements: Annex III → 2 Dec 2027, Annex I → 2 Aug 2028, Art. 111(2) → 2 Dec 2027.</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="trust-section" id="trust">
+        <div class="section-label"><span class="section-icon">§</span> 09 · TRUST</div>
+        <h2>EVERY STEP,<br><em>auditable.</em></h2>
+        <p class="section-intro">
+            The trace is the product. Nothing happens off the record — no hidden tool
+            calls, no silent retrieval, no opaque chain-of-thought.
+        </p>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon">§</div>
+                <div class="trust-body">
+                    <div class="trust-title">Source-anchored verdict.</div>
+                    <div class="trust-desc">Every classification cites the Commission-guideline paragraph (¶37 checklist, ¶46 lifts, ¶170 biometrics) and the article behind it.</div>
+                </div>
+                <div class="trust-badge">VERIFIED</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">¶</div>
+                <div class="trust-body">
+                    <div class="trust-title">Reproducible classification.</div>
+                    <div class="trust-desc">Pin a build; recreate the Art. 6 decision tree years later for audit or conformity-assessment defence.</div>
+                </div>
+                <div class="trust-badge">IMMUTABLE</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">†</div>
+                <div class="trust-body">
+                    <div class="trust-title">Both branches, in order.</div>
+                    <div class="trust-desc">Art. 6(1) Annex I is run in full before Art. 6(2) Annex III — a system can be high-risk under both; neither branch is skipped.</div>
+                </div>
+                <div class="trust-badge">ENFORCED</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon">**</div>
+                <div class="trust-body">
+                    <div class="trust-title">EU-native dates.</div>
+                    <div class="trust-desc">Built on the AI Omnibus 2026 postponements, not the superseded Art. 113 dates. Effective-date verdicts are current, not retrofitted.</div>
+                </div>
+                <div class="trust-badge">NATIVE</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="readme-section" id="readme">
+        <div class="readme-inner">
+            <div class="section-label" style="margin-bottom: 1.5rem;">
+                <span class="section-icon">§</span> 10 · README.MD
+            </div>
+            <div class="readme-content"><h1>ai-act-high-risk</h1>
+<p>Depth assessment skill for the <strong>EU AI Act high-risk classification under Art. 6</strong> (Regulation (EU) 2024/1689), grounded in the European Commission's draft Art. 6(5) classification guidelines (general principles, Annex I, Annex III) published for stakeholder consultation in 2026.</p>
+<p>For the full classification workflow, see <a href="SKILL.md">SKILL.md</a>.
+For version history, see <a href="CHANGELOG.md">CHANGELOG.md</a>.</p>
+<h2>What this skill does</h2>
+<p>Given an AI system description and intended-purpose evidence, determines whether the system is high-risk under:</p>
+<ul>
+<li><strong>Art. 6(1) + Annex I</strong> — AI system as product or safety component of a product under Union harmonisation legislation requiring third-party conformity assessment.</li>
+<li><strong>Art. 6(2) + Annex III</strong> — AI system falling into one of eight high-risk use-case areas (biometrics, critical infrastructure, education, employment, essential services, law enforcement, migration, justice/democracy), subject to the Art. 6(3) exception filter and profiling re-exception.</li>
+</ul>
+<p>Outputs a structured decision block + practitioner memo + JSON interchange artefact.</p>
+<h2>Deployment</h2>
+<p>Place this skill in your Claude Code skill directory (<code>~/.claude/skills/</code> or workspace-level). Claude will route to it from <code>ai-act-classifier</code> automatically when a high-risk branch is triggered, or invoke it directly on user prompts mentioning Annex I / Annex III / Art. 6 classification.</p>
+<h2>Disclaimer</h2>
+<p>This skill is not legal advice. The Commission guidelines it draws on are draft and non-binding (only the CJEU can give authoritative interpretation). Use under qualified counsel.</p>
+<h2>License</h2>
+<p>AGPL-3.0 (see repo-root LICENSE file).</p></div>
+        </div>
+    </section>
+
+    <footer class="page-footer">
+        <span class="footer-text">onezero.legal · /SKILLS/AIACT.HIGHRISK · v1.0</span>
+        <nav class="footer-links">
+            <a href="index.html">Portfolio</a>
+            <a href="#features">Capabilities</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#readme">README</a>
+        </nav>
+    </footer>
+
+</body>
+</html>
